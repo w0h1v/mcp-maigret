@@ -1,4 +1,5 @@
 # Maigret MCP Server
+[![Trust Score](https://archestra.ai/mcp-catalog/api/badge/quality/BurtTheCoder/mcp-maigret)](https://archestra.ai/mcp-catalog/BurtTheCoder__mcp-maigret)
 [![smithery badge](https://smithery.ai/badge/mcp-maigret)](https://smithery.ai/server/mcp-maigret)
 
 A Model Context Protocol (MCP) server for [maigret](https://github.com/soxoj/maigret), a powerful OSINT tool that collects user account information from various public sources. This server provides tools for searching usernames across social networks and analyzing URLs. It is designed to integrate seamlessly with MCP-compatible applications like [Claude Desktop](https://claude.ai).
