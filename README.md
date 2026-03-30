@@ -84,6 +84,10 @@ Configuration file location:
 
 5. Restart Claude Desktop
 
+## Hosted deployment
+
+A hosted deployment is available on [Fronteir AI](https://fronteir.ai/mcp/burtthecoder-mcp-maigret).
+
 ## Alternative Setup (From Source)
 
 If you prefer to run from source or need to modify the code:
