@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/w0h1v-mcp-maigret-badge.png)](https://mseep.ai/app/w0h1v-mcp-maigret)
+
 # Maigret MCP Server
 [![smithery badge](https://smithery.ai/badge/mcp-maigret)](https://smithery.ai/server/mcp-maigret)
 
