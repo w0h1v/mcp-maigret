@@ -1,7 +1,7 @@
 {
   "name": "mcp-maigret",
   "version": "1.0.14",
-  "description": "MCP server for maigret - OSINT username search across social networks",
+  "description": "MCP server that lets AI agents run maigret, an OSINT tool that searches a username across thousands of sites",
   "main": "build/index.js",
   "type": "module",
   "bin": {
@@ -17,7 +17,8 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^0.4.0"
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/node": "^20.17.12",
@@ -27,13 +28,22 @@
     "type": "git",
     "url": "git+https://github.com/w0h1v/mcp-maigret.git"
   },
+  "homepage": "https://w0h1v.github.io/mcp-maigret/",
+  "bugs": {
+    "url": "https://github.com/w0h1v/mcp-maigret/issues"
+  },
   "keywords": [
     "mcp",
+    "mcp-server",
+    "model-context-protocol",
     "maigret",
     "osint",
-    "social-networks",
     "username-search",
+    "social-networks",
+    "docker",
+    "ai-agents",
     "claude",
+    "claude-code",
     "claude-desktop"
   ],
   "author": "Burt The Coder",

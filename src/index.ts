@@ -82,6 +82,18 @@ function isValidTag(tag: string): boolean {
   return /^[a-zA-Z0-9_-]+$/.test(tag);
 }
 
+// maigret's --json takes a report type; the other formats are bare flags.
+function formatArgs(format: string): string[] {
+  return format === 'json' ? ['--json', 'simple'] : [`--${format}`];
+}
+
+// maigret names some reports with a type suffix.
+function reportFilename(username: string, format: string): string {
+  if (format === 'json') return `report_${username}_simple.json`;
+  if (format === 'html') return `report_${username}_plain.html`;
+  return `report_${username}.${format}`;
+}
+
 function isSearchUsernameArgs(args: unknown): args is SearchUsernameArgs {
   if (!args || typeof args !== 'object') return false;
   const a = args as Record<string, unknown>;
@@ -109,14 +121,10 @@ class MaigretServer {
 
     this.reportsDir = process.env.MAIGRET_REPORTS_DIR;
     
-        this.server = new Server({
-            name: 'maigret-server',
-            version: '0.1.0',
-            capabilities: {
-                tools: {}
-            },
-            timeout: 600000  // 10 minutes in milliseconds
-        });
+    this.server = new Server(
+      { name: 'maigret-server', version: '0.1.0' },
+      { capabilities: { tools: {} } }
+    );
 
     console.error('Using reports directory:', this.reportsDir);
     
@@ -201,7 +209,7 @@ class MaigretServer {
                 type: 'string',
                 enum: ['txt', 'html', 'pdf', 'json', 'csv', 'xmind'],
                 description: 'Output format',
-                default: 'pdf'
+                default: 'txt'
               },
               use_all_sites: {
                 type: 'boolean',
@@ -235,7 +243,7 @@ class MaigretServer {
                 type: 'string',
                 enum: ['txt', 'html', 'pdf', 'json', 'csv', 'xmind'],
                 description: 'Output format',
-                default: 'pdf'
+                default: 'txt'
               }
             },
             required: ['url']
@@ -259,7 +267,7 @@ class MaigretServer {
 
             const {
               username,
-              format = 'pdf',
+              format = 'txt',
               use_all_sites = false,
               tags = []
             } = request.params.arguments;
@@ -283,7 +291,7 @@ class MaigretServer {
             }
 
             const safeUsername = sanitizeFilename(username);
-            const reportPath = join(this.reportsDir, `report_${safeUsername}.${format}`);
+            const reportPath = join(this.reportsDir, reportFilename(safeUsername, format));;
 
             // Build docker command arguments (passed as array to prevent shell injection)
             const dockerArgs = [
@@ -291,7 +299,7 @@ class MaigretServer {
               '-v', `${this.reportsDir}:/app/reports`,
               DOCKER_IMAGE,
               username,
-              `--${format}`,
+              ...formatArgs(format),
               '--no-color',
               '--no-progressbar',
               '-n', '200'
@@ -308,11 +316,15 @@ class MaigretServer {
             // Run maigret in Docker using execFile (safe from shell injection)
             const { stdout, stderr } = await this.execCommand('docker', dockerArgs);
 
+            const reportStatus = existsSync(reportPath)
+              ? `Report saved to: ${reportPath}`
+              : `No report file was produced at ${reportPath} (the '${format}' format may be unavailable in this maigret image)`;
+
             return {
               content: [
                 {
                   type: 'text',
-                  text: `Report saved to: ${reportPath}\n\n${stdout}${stderr ? `\nErrors:\n${stderr}` : ''}`
+                  text: `${reportStatus}\n\n${stdout}${stderr ? `\nErrors:\n${stderr}` : ''}`
                 }
               ]
             };
@@ -326,7 +338,7 @@ class MaigretServer {
               );
             }
 
-            const { url, format = 'pdf' } = request.params.arguments;
+            const { url, format = 'txt' } = request.params.arguments;
 
             // Security: Validate URL to prevent command injection
             if (!isValidUrl(url)) {
@@ -342,7 +354,7 @@ class MaigretServer {
               '-v', `${this.reportsDir}:/app/reports`,
               DOCKER_IMAGE,
               '--parse', url,
-              `--${format}`,
+              ...formatArgs(format),
               '--no-color',
               '--no-progressbar',
               '--timeout', '60',
