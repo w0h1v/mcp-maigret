@@ -1,0 +1,49 @@
+name: Docs
+
+# Builds the documentation site on every pull request and publishes it to GitHub
+# Pages from the default branch. Enable Pages with source "GitHub Actions" first.
+on:
+  push:
+    branches: [main]
+    paths: ["docs/**", "README.md", "mkdocs.yml", "mkdocs_hooks.py", ".github/workflows/docs.yml"]
+  pull_request:
+    paths: ["docs/**", "README.md", "mkdocs.yml", "mkdocs_hooks.py", ".github/workflows/docs.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "mkdocs-material>=9.5,<10"
+      - run: mkdocs build --strict
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
+        with:
+          path: site/
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use mcp-maigret in research or publications, please cite it as below."
+title: "mcp-maigret"
+abstract: "Model Context Protocol server that lets AI agents run maigret, an OSINT tool that checks a username across thousands of sites."
+type: software
+authors:
+  - name: "mcp-maigret contributors"
+license: MIT
+repository-code: "https://github.com/w0h1v/mcp-maigret"
+keywords: [mcp, model-context-protocol, maigret, osint, username-search, ai-agents]

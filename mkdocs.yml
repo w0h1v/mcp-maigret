@@ -1,0 +1,51 @@
+site_name: mcp-maigret
+site_description: MCP server that lets AI agents run maigret, an OSINT username search tool
+site_url: https://w0h1v.github.io/mcp-maigret/
+repo_url: https://github.com/w0h1v/mcp-maigret
+repo_name: w0h1v/mcp-maigret
+edit_uri: edit/main/docs/
+copyright: MIT · Independent project, not affiliated with the maigret project.
+
+theme:
+  name: material
+  logo: assets/logo.svg
+  favicon: assets/logo.svg
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: teal
+      toggle: {icon: material/weather-night, name: Dark mode}
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: teal
+      toggle: {icon: material/weather-sunny, name: Light mode}
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.highlight
+
+hooks:
+  - mkdocs_hooks.py
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - toc: {permalink: true}
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Overview: index.md
+  - Using it:
+      - Connect a client: clients.md
+      - Tool reference: tools.md
+      - Troubleshooting: troubleshooting.md

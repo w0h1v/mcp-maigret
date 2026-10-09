@@ -1,0 +1,6 @@
+# Default reviewers. Security-sensitive paths are listed explicitly so they always
+# get maintainer review even if the default changes.
+*                       @w0h1v
+/src/                   @w0h1v
+/.github/workflows/     @w0h1v
+/Dockerfile             @w0h1v

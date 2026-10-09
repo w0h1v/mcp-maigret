@@ -1,0 +1,73 @@
+name: Bug report
+description: Report a defect in mcp-maigret
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do not paste real people's personal information from search results, or any credentials. Use a throwaway or well-known username (for example `octocat`) in reproductions.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead. Include the exact error text.
+    validations:
+      required: true
+
+  - type: textarea
+    id: input
+    attributes:
+      label: Tool call
+      description: The tool and arguments you used, for example `search_username` with `{"username": "octocat", "format": "json"}`.
+      render: json
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: mcp-maigret version
+      description: Output of `npm ls -g mcp-maigret`, or the commit you built from.
+    validations:
+      required: true
+
+  - type: input
+    id: maigret-version
+    attributes:
+      label: Maigret version
+      description: Run `docker run --rm soxoj/maigret:latest --version`.
+    validations:
+      required: true
+
+  - type: input
+    id: docker
+    attributes:
+      label: Docker and Node versions
+      description: Output of `docker --version` and `node --version`.
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system
+      description: For example, macOS 15.2 on arm64, or Ubuntu 24.04 on x86_64.
+    validations:
+      required: true
+
+  - type: input
+    id: client
+    attributes:
+      label: MCP client and version
+      description: For example, Claude Desktop 0.12, Claude Code, or "unknown".
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have not included real people's personal information or any credentials.
+          required: true

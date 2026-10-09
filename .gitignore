@@ -4,3 +4,6 @@ build/
 .env
 .env.local
 .env.*.local
+# Docs build
+site/
+__pycache__/

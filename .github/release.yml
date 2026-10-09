@@ -1,0 +1,17 @@
+# Categories for GitHub's auto-generated release notes (by pull request label).
+changelog:
+  exclude:
+    labels: ["skip-changelog", "dependencies"]
+  categories:
+    - title: Security
+      labels: ["security"]
+    - title: Breaking changes
+      labels: ["breaking"]
+    - title: New features
+      labels: ["enhancement", "feature"]
+    - title: Fixes
+      labels: ["bug"]
+    - title: Documentation
+      labels: ["documentation"]
+    - title: Other changes
+      labels: ["*"]
