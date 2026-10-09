@@ -8,6 +8,13 @@ updates:
     groups:
       dev-tools:
         dependency-type: "development"
+    ignore:
+      # Stay on TypeScript 5 (tsconfig uses moduleResolution "node") and on
+      # @types/node matching the oldest supported Node (engines: >=18).
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -21,3 +28,7 @@ updates:
     schedule:
       interval: "monthly"
     labels: ["dependencies"]
+    ignore:
+      # Odd-numbered Node releases are never LTS.
+      - dependency-name: "node"
+        versions: ["23.x", "25.x", "27.x"]

@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    # Only changes that can alter the published package trigger a release.
+    paths:
+      - 'src/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'tsconfig.json'
   release:
     types: [created]
 
