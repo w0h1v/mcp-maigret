@@ -7,3 +7,4 @@ build/
 # Docs build
 site/
 __pycache__/
+.DS_Store
