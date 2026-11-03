@@ -52,12 +52,3 @@ npm install && npm run build
 ```
 
 Use command `node` with the argument `/absolute/path/to/mcp-maigret/build/index.js`.
-
-## Smithery
-
-```sh
-npx -y @smithery/cli install mcp-maigret --client claude
-```
-
-!!! note
-    The server starts Docker containers, so it needs access to a Docker daemon. That doesn't work inside a hosted container without Docker, so prefer a local install.
