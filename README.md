@@ -11,7 +11,6 @@
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
   <img alt="Node 18 or newer" src="https://img.shields.io/badge/node-%E2%89%A518-339933">
   <a href="https://modelcontextprotocol.io"><img alt="MCP server" src="https://img.shields.io/badge/MCP-server-7c3aed"></a>
-  <a href="https://smithery.ai/server/mcp-maigret"><img alt="Smithery" src="https://smithery.ai/badge/mcp-maigret"></a>
 </p>
 
 <p align="center">
@@ -83,15 +82,6 @@ Edit the config file (macOS: `~/Library/Application Support/Claude/claude_deskto
     }
   }
 }
-```
-
-</details>
-
-<details>
-<summary><strong>Smithery</strong></summary>
-
-```sh
-npx -y @smithery/cli install mcp-maigret --client claude
 ```
 
 </details>
