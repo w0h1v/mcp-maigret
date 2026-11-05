@@ -32,6 +32,8 @@ jobs:
           node-version: ${{ matrix.node }}
       - run: npm ci
       - run: npm run build
+      - name: Unit tests
+        run: node --test tests/*.test.mjs
       - name: Check the package contents
         run: npm pack --dry-run
       - name: Audit production dependencies
