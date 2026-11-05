@@ -5,7 +5,11 @@ mcp-maigret speaks MCP over stdio. Every client needs the same two things: how t
 ## Requirements
 
 - Node.js 18 or newer.
-- Docker installed and running. The first search pulls the `soxoj/maigret:latest` image (about 800 MB).
+- Maigret, in one of two ways:
+  - **Docker** (default): Docker installed and running. The first search pulls the `soxoj/maigret:latest` image (about 800 MB).
+  - **Local**: a `maigret` command on `PATH`, for example `pipx install 'maigret[pdf]'`. No Docker needed, and PDF reports work.
+
+`MAIGRET_RUNNER` picks one: `docker`, `local`, or `auto` (the default, which uses a local `maigret` when one is installed and Docker otherwise). This repo's Docker image bundles maigret 0.6.6 with the `pdf` extra and sets `MAIGRET_RUNNER=local`, so it runs without a Docker daemon.
 - A writable reports directory. It is created if it doesn't exist.
 
 ## Claude Code

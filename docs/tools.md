@@ -26,14 +26,14 @@ The response starts with the report path (or a note that no report was produced)
 | `json` | `report_<username>_simple.json` | Works. Sent to maigret as `--json simple`. |
 | `html` | `report_<username>_plain.html` | Works |
 | `xmind` | `report_<username>.xmind` | Works |
-| `pdf` | `report_<username>.pdf` | Not available with the stock image |
+| `pdf` | `report_<username>.pdf` | Works with the local runner and `maigret[pdf]`; not with the stock image |
 
 Checked against maigret 0.6.6 on `soxoj/maigret:latest` in October 2026.
 
 When maigret finds related usernames it may write extra reports next to the main one, for example `report_octocatsup.txt`. The response only names the main file, so list the reports directory to see them all.
 
 !!! warning "PDF"
-    Maigret's PDF support is an optional extra (`pip install 'maigret[pdf]'`) that the `soxoj/maigret` image doesn't include. The tool tells you when the file wasn't produced. To get PDFs, build your own image with the extra and change `DOCKER_IMAGE` in `src/index.ts`.
+    Maigret's PDF support is an optional extra (`pip install 'maigret[pdf]'`) that the `soxoj/maigret` image doesn't include. The tool tells you when the file wasn't produced. To get PDFs, install `maigret[pdf]` locally and use `MAIGRET_RUNNER=local`, or use this repo's Docker image, which bundles it.
 
 ## `parse_url`
 

@@ -48,7 +48,7 @@ flowchart LR
 
 ## Quickstart
 
-**Requirements:** Node.js 18 or newer, and [Docker](https://docs.docker.com/get-docker/) installed and running. Developed and tested on macOS. Linux and Windows (Docker Desktop) should work but are untested.
+**Requirements:** Node.js 18 or newer, plus either [Docker](https://docs.docker.com/get-docker/) installed and running, or maigret installed locally (`pipx install 'maigret[pdf]'`). `MAIGRET_RUNNER` chooses `docker`, `local` or `auto` (default: local if `maigret` is on `PATH`, else Docker); see [Connect a client](docs/clients.md#requirements). Developed and tested on macOS. Linux and Windows (Docker Desktop) should work but are untested.
 
 **1. Pick a reports directory.** The server saves reports here. It is created if missing. The variable is required.
 
@@ -147,7 +147,7 @@ Reports are written to `MAIGRET_REPORTS_DIR`. Maigret picks the file names, and 
 | `json` | `report_<username>_simple.json` | Works |
 | `html` | `report_<username>_plain.html` | Works |
 | `xmind` | `report_<username>.xmind` | Works |
-| `pdf` | `report_<username>.pdf` | **Not available** with the stock image. Maigret needs its optional `pdf` extra, which `soxoj/maigret` doesn't include. The tool reports that no file was produced. |
+| `pdf` | `report_<username>.pdf` | Works with a local maigret installed with the `pdf` extra, and in this repo's Docker image. **Not available** with the stock `soxoj/maigret` image used by the Docker runner; the tool reports that no file was produced. |
 
 Statuses were checked against maigret 0.6.6 (image `soxoj/maigret:latest`, October 2026). Maigret's command line changes between releases, so this can drift.
 

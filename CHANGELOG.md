@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+### Added
+- `MAIGRET_RUNNER` (`docker`, `local` or `auto`, default `auto`): run a locally installed `maigret` instead of the Docker image. Auto uses a local `maigret` when one is on `PATH`, otherwise Docker (#22).
+- The Docker image bundles maigret 0.6.6 with the `pdf` extra and uses the local runner, so it works without a Docker daemon (for example on hosted MCP platforms, #5) and can write PDF reports.
+- Unit tests for runner selection (`npm test`), run in CI.
+
 ### Changed
 - Upgraded `@modelcontextprotocol/sdk` from 0.4.0 to 1.x (and added `zod`). This removes the high-severity advisory on the old SDK. The `Server` constructor now passes `capabilities` as options, as the 1.x API requires.
 - The default report `format` is now `txt` (was `pdf`), because the stock maigret image can't produce PDF reports.
