@@ -1,6 +1,6 @@
 {
   "name": "mcp-maigret",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "MCP server that lets AI agents run maigret, an OSINT tool that searches a username across thousands of sites",
   "main": "build/index.js",
   "type": "module",
